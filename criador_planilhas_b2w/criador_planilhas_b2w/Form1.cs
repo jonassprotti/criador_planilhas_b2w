@@ -84,7 +84,7 @@ namespace criador_planilhas_b2w
                         ref_pedido = linha;
                         continue;
                     }
-                    if (linha.StartsWith("107") || linha.StartsWith("269") || linha.StartsWith("350"))
+                    if (linha.StartsWith("107") || linha.StartsWith("269") || linha.StartsWith("350") || linha.StartsWith("268"))
                     {
                         entrega = linha;
                         continue;
