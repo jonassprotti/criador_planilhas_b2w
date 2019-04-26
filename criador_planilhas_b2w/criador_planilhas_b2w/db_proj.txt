@@ -1,0 +1,14 @@
+﻿CREATE DATABASE teste;
+USE TESTE;
+DROP TABLE TESTE;
+CREATE TABLE `teste`.`teste` (
+  `marca` VARCHAR(4) NULL,
+  `data_pedido` VARCHAR(10) NULL,
+  `data_extorno` VARCHAR(10) NULL,
+  `nf` varchar(10) not null,
+  `cliente` varchar(20) not null,
+  `produto` varchar(20) not null,
+  `ref_pedido` VARCHAR(12) NOT NULL,
+  `entrega` VARCHAR(12) NOT NULL,
+  `tipo` VARCHAR(30) NOT NULL,
+  `valor` VARCHAR(10) NOT NULL);
