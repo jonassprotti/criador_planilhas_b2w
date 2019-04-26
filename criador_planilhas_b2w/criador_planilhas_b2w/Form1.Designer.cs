@@ -112,11 +112,12 @@
             this.btnAdicionar.TabIndex = 12;
             this.btnAdicionar.Text = "Próximo item";
             this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // lblNumPed
             // 
             this.lblNumPed.AutoSize = true;
-            this.lblNumPed.Location = new System.Drawing.Point(385, 89);
+            this.lblNumPed.Location = new System.Drawing.Point(150, 81);
             this.lblNumPed.Name = "lblNumPed";
             this.lblNumPed.Size = new System.Drawing.Size(35, 13);
             this.lblNumPed.TabIndex = 11;

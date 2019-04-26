@@ -17,6 +17,21 @@ namespace criador_planilhas_b2w
         private MySqlConnection objCnx = new MySqlConnection(); //Conexão
         private MySqlCommand objCmd = new MySqlCommand();//Comandos de linguagem
         private MySqlDataReader objDados; //Leitura de dados
+
+        String marca = "";
+        String data_pedido = "";
+        String data_estorno = "";
+        String ref_pedido = "";
+        String entrega = "";
+        String tipo = "";
+        String valor = "";
+
+        double valor1 = 0;
+        double valor2 = 0;
+        double valor3 = 0;
+        int valorInt = 0;
+
+        int j = 0;
         public Form1()
         {
             InitializeComponent();
@@ -33,20 +48,7 @@ namespace criador_planilhas_b2w
             text = text.Replace("SHOP", ";SHOP");
             String[] lista = text.Split(new Char[] { ';' });
 
-            String marca = "";
-            String data_pedido = "";
-            String data_estorno = "";
-            String ref_pedido = "";
-            String entrega = "";
-            String tipo = "";
-            String valor = "";
 
-            double valor1 = 0;
-            double valor2 = 0;
-            double valor3 = 0;
-            int valorInt = 0;
-
-            int j = 0;
 
             string path = @"C:\Users\desktop\Documents\ProgPlanilhas\testeResult.txt";
 
@@ -120,7 +122,7 @@ namespace criador_planilhas_b2w
                             valor = valor.Replace(" ", "");
                             valor3 = Convert.ToDouble(valor);
                         }
-                        lblNumPed.Text = "Dê o a NF, nome do cliente, código do produto e preço de custo, referente ao pedido nº" + ref_pedido;
+                        lblNumPed.Text = "Dê o NF, nome do cliente, código do produto e preço de custo, referente ao pedido nº " + ref_pedido;
                     }
                     try
                     {
@@ -139,8 +141,29 @@ namespace criador_planilhas_b2w
                     {
                         MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
                 }
                 File.WriteAllLines(path, lista, Encoding.UTF8);
+            }
+        }
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
+                    "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                objCmd.Connection = objCnx;
+                objCmd.CommandText = sql;
+                objCnx.Open();
+                objCmd.ExecuteNonQuery();
+                objCnx.Close();
+                data_pedido = "";
+                j++;
+
+            }
+            catch (Exception Erro)
+            {
+                MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
