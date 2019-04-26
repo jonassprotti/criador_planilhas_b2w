@@ -120,6 +120,7 @@ namespace criador_planilhas_b2w
                             valor = valor.Replace(" ", "");
                             valor3 = Convert.ToDouble(valor);
                         }
+                        lblNumPed.Text = "Dê o a NF, nome do cliente, código do produto e preço de custo, referente ao pedido nº" + ref_pedido;
                     }
                     try
                     {
