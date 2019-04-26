@@ -48,8 +48,6 @@ namespace criador_planilhas_b2w
             text = text.Replace("SHOP", ";SHOP");
             String[] lista = text.Split(new Char[] { ';' });
 
-
-
             string path = @"C:\Users\desktop\Documents\ProgPlanilhas\testeResult.txt";
 
             // This text is added only once to the file.
@@ -61,7 +59,11 @@ namespace criador_planilhas_b2w
                     string linha = lista[i];
                     linha = linha.Replace(";", "");
 
-                    if (linha.Trim() == "") continue;
+                    if (linha.Trim() == "")
+                    {
+                        data_estorno = "";
+                        continue;
+                    }
                     if (linha.StartsWith("ACOM") || linha.StartsWith("SUBA") || linha.StartsWith("SHOP"))
                     {
                         marca = linha;
@@ -135,13 +137,31 @@ namespace criador_planilhas_b2w
                         objCnx.Close();
                         data_pedido = "";
                         j++;
-
                     }
                     catch (Exception Erro)
                     {
                         MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
+                    //if (valorInt == 3)
+                    //{
+                    //    try
+                    //    {
+                    //        String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
+                    //            "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                    //        objCmd.Connection = objCnx;
+                    //        objCmd.CommandText = sql;
+                    //        objCnx.Open();
+                    //        objCmd.ExecuteNonQuery();
+                    //        objCnx.Close();
+                    //        data_pedido = "";
+                    //        j++;
+                    //        valorInt = 0;
+                    //    }
+                    //    catch (Exception Erro)
+                    //    {
+                    //        MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    }
+                    //}
                 }
                 File.WriteAllLines(path, lista, Encoding.UTF8);
             }
