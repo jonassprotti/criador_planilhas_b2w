@@ -168,6 +168,7 @@ namespace criador_planilhas_b2w
                         objCmd.ExecuteNonQuery();
                         objCnx.Close();
 
+
                         data_pedido = "";
                         j++;
                         valorInt = 1;
