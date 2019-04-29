@@ -29,6 +29,7 @@ namespace criador_planilhas_b2w
         double valor1 = 0;
         double valor2 = 0;
         double valor3 = 0;
+        double valor4 = 0;
         int valorInt = 0;
 
         int j = 0;
@@ -90,12 +91,14 @@ namespace criador_planilhas_b2w
                         continue;
                     }
                     if (linha.StartsWith("Estorno") || linha.StartsWith("Venda") || linha.StartsWith("Comissao") ||
-                        linha.StartsWith("Frete") || linha.StartsWith("Tarifa") || linha.StartsWith("Diferenca") ||
-                        linha.StartsWith("Comissao") || linha.StartsWith("IR"))
+                        linha.StartsWith("Frete") || linha.StartsWith("Diferenca") ||
+                        linha.StartsWith("Comissao") || linha.StartsWith("IR") || linha.StartsWith("Tarifa"))
                     {
                         tipo = linha;
                         continue;
                     }
+
+
                     if (linha.StartsWith("R$") || linha.StartsWith("-R$"))
                     {
                         valor = linha;
@@ -124,44 +127,82 @@ namespace criador_planilhas_b2w
                             valor = valor.Replace(" ", "");
                             valor3 = Convert.ToDouble(valor);
                         }
+                        if (valorInt == 4)
+                        {
+                            valor = valor.Replace("R$", "");
+                            valor = valor.Replace("\r", "");
+                            valor = valor.Replace("\n", "");
+                            valor = valor.Replace(" ", "");
+                            valor4 = Convert.ToDouble(valor);
+                        }
+
                         lblNumPed.Text = "Dê o NF, nome do cliente, código do produto e preço de custo, referente ao pedido nº " + ref_pedido;
                     }
-                    try
+                    if (valorInt == 1 || valorInt == 2 || valorInt == 3) {
+                        try
+                        {
+                            String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
+                                "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                            objCmd.Connection = objCnx;
+                            objCmd.CommandText = sql;
+                            objCnx.Open();
+                            objCmd.ExecuteNonQuery();
+                            objCnx.Close();
+                            data_pedido = "";
+                            j++;
+                            continue;
+                        }
+                        
+                    catch (Exception Erro)
+                    {
+                        MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                  }
+                    if(valorInt == 4 && tipo != "Tarifa_Adicional")
                     {
                         String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
-                            "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                               "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
                         objCmd.Connection = objCnx;
                         objCmd.CommandText = sql;
                         objCnx.Open();
                         objCmd.ExecuteNonQuery();
                         objCnx.Close();
+
                         data_pedido = "";
                         j++;
+                        valorInt = 1;
+                        continue;
                     }
-                    catch (Exception Erro)
+                    if (valorInt == 4)
                     {
-                        MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        try
+                           {
+                            String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
+                                "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                            objCmd.Connection = objCnx;
+                            objCmd.CommandText = sql;
+                            objCnx.Open();
+                            objCmd.ExecuteNonQuery();
+                            objCnx.Close();
+
+
+                                    String sqlnull = "INSERT INTO TESTE VALUES('','','','','','','','','','')";
+                                    objCmd.Connection = objCnx;
+                                    objCmd.CommandText = sqlnull;
+                                    objCnx.Open();
+                                    objCmd.ExecuteNonQuery();
+                                    objCnx.Close();
+
+
+                            data_pedido = "";
+                            j++;
+                            valorInt = 0;
+                        }
+                        catch (Exception Erro)
+                        {
+                            MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    //if (valorInt == 3)
-                    //{
-                    //    try
-                    //    {
-                    //        String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
-                    //            "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
-                    //        objCmd.Connection = objCnx;
-                    //        objCmd.CommandText = sql;
-                    //        objCnx.Open();
-                    //        objCmd.ExecuteNonQuery();
-                    //        objCnx.Close();
-                    //        data_pedido = "";
-                    //        j++;
-                    //        valorInt = 0;
-                    //    }
-                    //    catch (Exception Erro)
-                    //    {
-                    //        MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    }
-                    //}
                 }
                 File.WriteAllLines(path, lista, Encoding.UTF8);
             }
