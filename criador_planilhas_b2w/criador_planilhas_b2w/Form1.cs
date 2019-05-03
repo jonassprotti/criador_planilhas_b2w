@@ -138,7 +138,61 @@ namespace criador_planilhas_b2w
 
                         lblNumPed.Text = "Dê o NF, nome do cliente, código do produto e preço de custo, referente ao pedido nº " + ref_pedido;
                     }
-                    if (valorInt == 1 || valorInt == 2 || valorInt == 3) {
+                    if (valorInt == 4 && tipo != "Tarifa_Adicional")
+                    {
+                        String sqlnull = "INSERT INTO TESTE VALUES('','','','','','','','','','')";
+                        objCmd.Connection = objCnx;
+                        objCmd.CommandText = sqlnull;
+                        objCnx.Open();
+                        objCmd.ExecuteNonQuery();
+                        objCnx.Close();
+
+                        String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
+                               "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                        objCmd.Connection = objCnx;
+                        objCmd.CommandText = sql;
+                        objCnx.Open();
+                        objCmd.ExecuteNonQuery();
+                        objCnx.Close();
+
+
+                        data_pedido = "";
+                        j++;
+                        valorInt = 1;
+                        continue;
+                    }
+                    if (valorInt == 4)
+                    {
+                        try
+                        {
+                            String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
+                                "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                            objCmd.Connection = objCnx;
+                            objCmd.CommandText = sql;
+                            objCnx.Open();
+                            objCmd.ExecuteNonQuery();
+                            objCnx.Close();
+
+
+                            String sqlnull = "INSERT INTO TESTE VALUES('','','','','','','','','','')";
+                            objCmd.Connection = objCnx;
+                            objCmd.CommandText = sqlnull;
+                            objCnx.Open();
+                            objCmd.ExecuteNonQuery();
+                            objCnx.Close();
+
+
+                            data_pedido = "";
+                            j++;
+                            valorInt = 0;
+                            continue;
+                        }
+                        catch (Exception Erro)
+                        {
+                            MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    if (valorInt == 1 || valorInt == 2) {
                         try
                         {
                             String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
@@ -157,27 +211,10 @@ namespace criador_planilhas_b2w
                     {
                         MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                  }
-                    if(valorInt == 4 && tipo != "Tarifa_Adicional")
-                    {
-                        String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
-                               "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
-                        objCmd.Connection = objCnx;
-                        objCmd.CommandText = sql;
-                        objCnx.Open();
-                        objCmd.ExecuteNonQuery();
-                        objCnx.Close();
-
-
-                        data_pedido = "";
-                        j++;
-                        valorInt = 1;
-                        continue;
-                    }
-                    if (valorInt == 4)
+                  } else if(valorInt == 3)
                     {
                         try
-                           {
+                        {
                             String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
                                 "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
                             objCmd.Connection = objCnx;
@@ -185,48 +222,26 @@ namespace criador_planilhas_b2w
                             objCnx.Open();
                             objCmd.ExecuteNonQuery();
                             objCnx.Close();
-
-
-                                    String sqlnull = "INSERT INTO TESTE VALUES('','','','','','','','','','')";
-                                    objCmd.Connection = objCnx;
-                                    objCmd.CommandText = sqlnull;
-                                    objCnx.Open();
-                                    objCmd.ExecuteNonQuery();
-                                    objCnx.Close();
-
-
                             data_pedido = "";
                             j++;
-                            valorInt = 0;
+
+
+                            continue;
                         }
+
                         catch (Exception Erro)
                         {
                             MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
+                    
                 }
                 File.WriteAllLines(path, lista, Encoding.UTF8);
             }
         }
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
-                    "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
-                objCmd.Connection = objCnx;
-                objCmd.CommandText = sql;
-                objCnx.Open();
-                objCmd.ExecuteNonQuery();
-                objCnx.Close();
-                data_pedido = "";
-                j++;
-
-            }
-            catch (Exception Erro)
-            {
-                MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+          
         }
     }
 }
