@@ -135,8 +135,6 @@ namespace criador_planilhas_b2w
                             valor = valor.Replace(" ", "");
                             valor4 = Convert.ToDouble(valor);
                         }
-
-                        lblNumPed.Text = "Dê o NF, nome do cliente, código do produto e preço de custo, referente ao pedido nº " + ref_pedido;
                     }
                     if (valorInt == 4 && tipo != "Tarifa_Adicional")
                     {
@@ -147,8 +145,8 @@ namespace criador_planilhas_b2w
                         objCmd.ExecuteNonQuery();
                         objCnx.Close();
 
-                        String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
-                               "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                        String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "',''," +
+                               "'','','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
                         objCmd.Connection = objCnx;
                         objCmd.CommandText = sql;
                         objCnx.Open();
@@ -165,8 +163,8 @@ namespace criador_planilhas_b2w
                     {
                         try
                         {
-                            String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
-                                "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                            String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "',''," +
+                                "'','','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
                             objCmd.Connection = objCnx;
                             objCmd.CommandText = sql;
                             objCnx.Open();
@@ -195,8 +193,8 @@ namespace criador_planilhas_b2w
                     if (valorInt == 1 || valorInt == 2) {
                         try
                         {
-                            String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
-                                "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                            String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "',''," +
+                                "'','','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
                             objCmd.Connection = objCnx;
                             objCmd.CommandText = sql;
                             objCnx.Open();
@@ -215,8 +213,8 @@ namespace criador_planilhas_b2w
                     {
                         try
                         {
-                            String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "','" + txtnf.Text + "'," +
-                                "'" + txtClie.Text + "','" + txtCodProd.Text + "','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
+                            String sql = "INSERT INTO TESTE VALUES('" + marca + "', '" + data_pedido + "','" + data_estorno + "',''," +
+                                "'','','" + ref_pedido + "','" + entrega + "','" + tipo + "','" + valor + "')";
                             objCmd.Connection = objCnx;
                             objCmd.CommandText = sql;
                             objCnx.Open();
@@ -239,9 +237,6 @@ namespace criador_planilhas_b2w
                 File.WriteAllLines(path, lista, Encoding.UTF8);
             }
         }
-        private void btnAdicionar_Click(object sender, EventArgs e)
-        {
-          
-        }
+     
     }
 }
