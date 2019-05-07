@@ -234,9 +234,13 @@ namespace criador_planilhas_b2w
                     }
                     
                 }
-                File.WriteAllLines(path, lista, Encoding.UTF8);
+                File.WriteAllLines(path, lista, Encoding.UTF8);    
             }
+
+            atualizar next = new atualizar();
+            next.Show();
+            this.Visible = false;
         }
-     
     }
 }
+

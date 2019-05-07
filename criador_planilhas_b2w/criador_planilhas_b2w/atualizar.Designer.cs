@@ -28,135 +28,118 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtPrecoCusto = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtCodProd = new System.Windows.Forms.TextBox();
-            this.txtnf = new System.Windows.Forms.TextBox();
-            this.txtClie = new System.Windows.Forms.TextBox();
-            this.btnAdicionar = new System.Windows.Forms.Button();
-            this.lblNumPed = new System.Windows.Forms.Label();
+            this.dgvDados = new System.Windows.Forms.DataGridView();
+            this.marca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data_pedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data_extorno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ref_pedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.entrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
             this.SuspendLayout();
             // 
-            // label4
+            // dgvDados
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(377, 253);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 13);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "Preço de custo:";
+            this.dgvDados.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.marca,
+            this.data_pedido,
+            this.data_extorno,
+            this.nf,
+            this.cliente,
+            this.produto,
+            this.ref_pedido,
+            this.entrega,
+            this.tipo,
+            this.valor});
+            this.dgvDados.Location = new System.Drawing.Point(12, 56);
+            this.dgvDados.Name = "dgvDados";
+            this.dgvDados.Size = new System.Drawing.Size(1077, 382);
+            this.dgvDados.TabIndex = 0;
+//            this.dgvDados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDados_CellContentClick);
+            this.dgvDados.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvDados_MouseDoubleClick);
             // 
-            // txtPrecoCusto
+            // marca
             // 
-            this.txtPrecoCusto.Location = new System.Drawing.Point(369, 269);
-            this.txtPrecoCusto.Name = "txtPrecoCusto";
-            this.txtPrecoCusto.Size = new System.Drawing.Size(100, 20);
-            this.txtPrecoCusto.TabIndex = 29;
+            this.marca.HeaderText = "Marca";
+            this.marca.Name = "marca";
             // 
-            // label3
+            // data_pedido
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(537, 188);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "Código do produto";
+            this.data_pedido.HeaderText = "Data de pedido";
+            this.data_pedido.Name = "data_pedido";
             // 
-            // label2
+            // data_extorno
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(377, 188);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "Nome do cliente:";
+            this.data_extorno.HeaderText = "Data de Estorno";
+            this.data_extorno.Name = "data_extorno";
             // 
-            // label1
+            // nf
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(240, 188);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 13);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "NF";
+            this.nf.HeaderText = "Nota Fiscal";
+            this.nf.Name = "nf";
             // 
-            // txtCodProd
+            // cliente
             // 
-            this.txtCodProd.Location = new System.Drawing.Point(534, 204);
-            this.txtCodProd.Name = "txtCodProd";
-            this.txtCodProd.Size = new System.Drawing.Size(100, 20);
-            this.txtCodProd.TabIndex = 25;
+            this.cliente.HeaderText = "Cliente";
+            this.cliente.Name = "cliente";
             // 
-            // txtnf
+            // produto
             // 
-            this.txtnf.Location = new System.Drawing.Point(201, 204);
-            this.txtnf.Name = "txtnf";
-            this.txtnf.Size = new System.Drawing.Size(100, 20);
-            this.txtnf.TabIndex = 24;
+            this.produto.HeaderText = "Produto";
+            this.produto.Name = "produto";
             // 
-            // txtClie
+            // ref_pedido
             // 
-            this.txtClie.Location = new System.Drawing.Point(369, 204);
-            this.txtClie.Name = "txtClie";
-            this.txtClie.Size = new System.Drawing.Size(100, 20);
-            this.txtClie.TabIndex = 23;
+            this.ref_pedido.HeaderText = "Ref. Pedido";
+            this.ref_pedido.Name = "ref_pedido";
             // 
-            // btnAdicionar
+            // entrega
             // 
-            this.btnAdicionar.Location = new System.Drawing.Point(380, 342);
-            this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
-            this.btnAdicionar.TabIndex = 22;
-            this.btnAdicionar.Text = "Próximo item";
-            this.btnAdicionar.UseVisualStyleBackColor = true;
-            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            this.entrega.HeaderText = "Entrega";
+            this.entrega.Name = "entrega";
             // 
-            // lblNumPed
+            // tipo
             // 
-            this.lblNumPed.AutoSize = true;
-            this.lblNumPed.Location = new System.Drawing.Point(167, 85);
-            this.lblNumPed.Name = "lblNumPed";
-            this.lblNumPed.Size = new System.Drawing.Size(35, 13);
-            this.lblNumPed.TabIndex = 21;
-            this.lblNumPed.Text = "label1";
+            this.tipo.HeaderText = "Tipo";
+            this.tipo.Name = "tipo";
+            // 
+            // valor
+            // 
+            this.valor.HeaderText = "Valor";
+            this.valor.Name = "valor";
             // 
             // atualizar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtPrecoCusto);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtCodProd);
-            this.Controls.Add(this.txtnf);
-            this.Controls.Add(this.txtClie);
-            this.Controls.Add(this.btnAdicionar);
-            this.Controls.Add(this.lblNumPed);
+            this.ClientSize = new System.Drawing.Size(1101, 451);
+            this.Controls.Add(this.dgvDados);
             this.Name = "atualizar";
             this.Text = "atualizar";
             this.Load += new System.EventHandler(this.atualizar_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtPrecoCusto;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtCodProd;
-        private System.Windows.Forms.TextBox txtnf;
-        private System.Windows.Forms.TextBox txtClie;
-        private System.Windows.Forms.Button btnAdicionar;
-        private System.Windows.Forms.Label lblNumPed;
+        private System.Windows.Forms.DataGridView dgvDados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn marca;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data_pedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data_extorno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn produto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ref_pedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn entrega;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valor;
     }
 }
