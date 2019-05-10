@@ -417,7 +417,7 @@ namespace criador_planilhas_b2w
                             objCnx.Close();
                             data_pedido = "";
                             j++;
-
+                            
                             
 
                             if (tipo != "Frete_B2W_Entrega" || tipo != "Estorno_Frete_B2W_Entrega")
@@ -426,8 +426,7 @@ namespace criador_planilhas_b2w
                             }
                             else
                             {
-                               
-                                return;
+                                return;  
                             }
                             
                         }
@@ -437,17 +436,13 @@ namespace criador_planilhas_b2w
                             MessageBox.Show("Erro ==> " + Erro.Message, "ADO.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    
-
                 }
-
                 File.WriteAllLines(path, lista, Encoding.UTF8);
             }
         }
 
         private void BtnProx_Click(object sender, EventArgs e)
         {
-
             adicionar();
             ref_pedidoInicial = "";
             atualizar();
@@ -455,6 +450,30 @@ namespace criador_planilhas_b2w
             valor2 = 0;
             valor3 = 0;
             valor4 = 0;
+            valorInt = 0;
+            if (tipo == "Tarifa_Adicional")
+            {
+                add = add - 0;
+            }
+            else
+            {
+                add = add - 7;
+            }
+            txtCodProd.Text = "SW";
+            txtCusto.Clear();
+            txtNF.Clear();
+            txtNomeClie.Clear();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            String sql = "select * from teste INTO OUTFILE 'testando.csv' FIELDS ENCLOSED BY '"'TERMINATED BY '";"'ESCAPED BY '"""'LINES TERMINATED BY '\r\n'";
+
+            objCmd.Connection = objCnx;
+            objCmd.CommandText = sql;
+            objCnx.Open();
+            objCmd.ExecuteNonQuery();
+            objCnx.Close();
         }
     }
 }

@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblDesc = new System.Windows.Forms.Label();
+            this.btnExport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnProx
@@ -123,11 +124,22 @@
             this.lblDesc.TabIndex = 10;
             this.lblDesc.Text = "label5";
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(851, 413);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(113, 23);
+            this.btnExport.TabIndex = 11;
+            this.btnExport.Text = "Exportar planilha";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(976, 448);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.lblDesc);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label4);
@@ -158,6 +170,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDesc;
+        private System.Windows.Forms.Button btnExport;
     }
 }
 
