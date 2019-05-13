@@ -46,6 +46,21 @@ namespace criador_planilhas_b2w
         {
             objCnx.ConnectionString = "Server=localhost;Database=teste;User=root;Pwd=T34ka3yn##@@Swell";
 
+            String sql = "DROP TABLE TESTE";
+
+            objCmd.Connection = objCnx;
+            objCmd.CommandText = sql;
+            objCnx.Open();
+            objCmd.ExecuteNonQuery();
+            objCnx.Close();
+
+            String create = "CREATE TABLE `teste`.`teste` (`marca` VARCHAR(4) NULL,`data_pedido` VARCHAR(10) NULL,`data_extorno` VARCHAR(10) NULL,`nf` varchar(10) not null,`cliente` varchar(20) not null,`produto` varchar(20) not null,`ref_pedido` VARCHAR(12) NOT NULL,`entrega` VARCHAR(12) NOT NULL,`tipo` VARCHAR(30) NOT NULL,`valor` VARCHAR(20) NOT NULL)";
+            objCmd.Connection = objCnx;
+            objCmd.CommandText = create;
+            objCnx.Open();
+            objCmd.ExecuteNonQuery();
+            objCnx.Close();
+
             string text = System.IO.File.ReadAllText(@"C:\Users\desktop\Documents\ProgPlanilhas\teste.txt");
 
             text = text.Replace("ACOM", ";ACOM");
@@ -217,7 +232,7 @@ namespace criador_planilhas_b2w
                         objCmd.ExecuteNonQuery();
                         objCnx.Close();
                         //Insere o imposto de 4% perante o valor a receber
-                        double imposto = receber * 0.04;
+                        double imposto = valor1 * 0.04;
                         String valorImposto = "INSERT INTO TESTE VALUES('', '','','','','','','','Imposto NF (4%)','" + imposto + "')";
                         objCmd.Connection = objCnx;
                         objCmd.CommandText = valorImposto;
@@ -301,7 +316,7 @@ namespace criador_planilhas_b2w
                             objCmd.ExecuteNonQuery();
                             objCnx.Close();
                             //Insere o imposto de 4% perante o valor a receber
-                            double imposto = receber * 0.04;
+                            double imposto = valor1 * 0.04;
                             String valorImposto = "INSERT INTO TESTE VALUES('', '','','','','','','','Imposto NF (4%)','" + imposto + "')";
                             objCmd.Connection = objCnx;
                             objCmd.CommandText = valorImposto;
@@ -467,13 +482,20 @@ namespace criador_planilhas_b2w
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            String sql = "select * from teste INTO OUTFILE 'testando.csv' FIELDS ENCLOSED BY '"'TERMINATED BY '";"'ESCAPED BY '"""'LINES TERMINATED BY '\r\n'";
+            String sql = "select * from teste INTO OUTFILE 'planilha.csv' FIELDS ENCLOSED BY '\"' TERMINATED BY ';' ESCAPED BY '\"' LINES TERMINATED BY '\r\n'";
 
             objCmd.Connection = objCnx;
             objCmd.CommandText = sql;
             objCnx.Open();
             objCmd.ExecuteNonQuery();
             objCnx.Close();
+
+            System.IO.Directory.Move(@"C:\ProgramData\MySQL\MySQL Server 8.0\Data\teste\planilha.csv", @"C:\Servidor\Financeiro\MARKETPLACES\REPASSES B2W\B2W - LANÇAMENTOS DE REPASSE\planilha.csv");
+            System.IO.Directory.Delete(@"C:\Users\desktop\Documents\ProgPlanilhas\testeResult.txt");
+            System.IO.Directory.Delete(@"C:\Users\desktop\Documents\ProgPlanilhas\teste.csv");
+            System.IO.Directory.Delete(@"C:\Users\desktop\Documents\ProgPlanilhas\teste.txt");
+            System.IO.Directory.Delete(@"C:\Users\desktop\Documents\ProgPlanilhas");
+            MessageBox.Show("Planilha exportada com sucesso!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
